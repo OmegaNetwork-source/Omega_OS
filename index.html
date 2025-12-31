@@ -586,7 +586,7 @@
             function getDownloadUrl(platform) {
                 // GitHub releases latest download URLs
                 // These will work once you create a release with these filenames
-                const baseUrl = 'https://github.com/OmegaNetwork-source/Omega_OS/releases/latest/download/';
+                const baseUrl = 'https://github.com/OmegaNetwork-source/OmegaOS_Website/releases/latest/download/';
                 
                 // Try common electron-builder filename patterns
                 const urls = {
@@ -596,7 +596,7 @@
                 };
                 
                 // Fallback to releases page if platform unknown
-                return urls[platform] || 'https://github.com/OmegaNetwork-source/Omega_OS/releases/latest';
+                return urls[platform] || 'https://github.com/OmegaNetwork-source/OmegaOS_Website/releases/latest';
             }
 
             // Set up download button
