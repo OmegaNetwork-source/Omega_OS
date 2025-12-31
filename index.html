@@ -485,8 +485,6 @@
             
             <div class="platform-links">
                 <a href="#" class="platform-link" data-platform="windows">Windows</a>
-                <a href="#" class="platform-link" data-platform="macos">macOS</a>
-                <a href="#" class="platform-link" data-platform="linux">Linux</a>
             </div>
         </div>
     </section>
@@ -585,17 +583,13 @@
 
             function getDownloadUrl(platform) {
                 // GitHub releases latest download URLs
-                // These will work once you create a release with these filenames
                 const baseUrl = 'https://github.com/OmegaNetwork-source/OmegaOS_Website/releases/latest/download/';
                 
-                // Try common electron-builder filename patterns
                 const urls = {
-                    'windows': baseUrl + 'Omega.OS.Setup.1.0.0.exe', // NSIS installer (GitHub replaces spaces with dots)
-                    'macos': baseUrl + 'Omega.OS-1.0.0.dmg',
-                    'linux': baseUrl + 'Omega.OS-1.0.0.AppImage'
+                    'windows': baseUrl + 'Omega.OS.Setup.1.0.0.exe' // NSIS installer (GitHub replaces spaces with dots)
                 };
                 
-                // Fallback to releases page if platform unknown
+                // Fallback to releases page if platform unknown or not windows
                 return urls[platform] || 'https://github.com/OmegaNetwork-source/OmegaOS_Website/releases/latest';
             }
 
