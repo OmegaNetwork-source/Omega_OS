@@ -1,14 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "echo 'Static site - no build needed'",
+  "buildCommand": "",
   "outputDirectory": ".",
   "framework": null,
-  "installCommand": "echo 'No dependencies to install'",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "installCommand": "",
+  "cleanUrls": true
 }
 
