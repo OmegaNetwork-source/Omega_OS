@@ -480,13 +480,13 @@
         <div class="download-box" id="download">
             <h2>Download Omega OS</h2>
             <p>Experience true privacy and security. Available for Windows, macOS, and Linux.</p>
-            <a href="https://github.com/OmegaNetwork-source/Omega_OS/releases/latest" class="download-btn" target="_blank" rel="noopener noreferrer">Download Now</a>
+            <a href="#" class="download-btn" id="downloadBtn">Download Now</a>
             <div class="download-info">Version 1.0.0 • Latest Release</div>
             
             <div class="platform-links">
-                <a href="https://github.com/OmegaNetwork-source/Omega_OS/releases/latest" class="platform-link" target="_blank" rel="noopener noreferrer">Windows</a>
-                <a href="https://github.com/OmegaNetwork-source/Omega_OS/releases/latest" class="platform-link" target="_blank" rel="noopener noreferrer">macOS</a>
-                <a href="https://github.com/OmegaNetwork-source/Omega_OS/releases/latest" class="platform-link" target="_blank" rel="noopener noreferrer">Linux</a>
+                <a href="#" class="platform-link" data-platform="windows">Windows</a>
+                <a href="#" class="platform-link" data-platform="macos">macOS</a>
+                <a href="#" class="platform-link" data-platform="linux">Linux</a>
             </div>
         </div>
     </section>
@@ -567,6 +567,75 @@
                     logoImg.onerror();
                 }
             }
+
+            // Download functionality
+            function detectOS() {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                const platform = window.navigator.platform.toLowerCase();
+                
+                if (platform.indexOf('win') > -1 || userAgent.indexOf('windows') > -1) {
+                    return 'windows';
+                } else if (platform.indexOf('mac') > -1 || userAgent.indexOf('macintosh') > -1) {
+                    return 'macos';
+                } else if (platform.indexOf('linux') > -1 || userAgent.indexOf('linux') > -1) {
+                    return 'linux';
+                }
+                return 'unknown';
+            }
+
+            function getDownloadUrl(platform) {
+                // Update these URLs once you have releases created on GitHub
+                // Format: https://github.com/OmegaNetwork-source/Omega_OS/releases/download/v1.0.0/Omega-OS-Setup-1.0.0.exe
+                const baseUrl = 'https://github.com/OmegaNetwork-source/Omega_OS/releases/latest/download/';
+                
+                const urls = {
+                    'windows': baseUrl + 'Omega-OS-Setup.exe', // Update with actual filename
+                    'macos': baseUrl + 'Omega-OS.dmg', // Update with actual filename
+                    'linux': baseUrl + 'Omega-OS.AppImage' // Update with actual filename
+                };
+                
+                return urls[platform] || baseUrl;
+            }
+
+            // Set up download button
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const os = detectOS();
+                    const url = getDownloadUrl(os);
+                    // Create a temporary link to trigger download
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = '';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    // Fallback: open in new tab if download doesn't start
+                    setTimeout(function() {
+                        window.open(url, '_blank');
+                    }, 500);
+                });
+            }
+
+            // Set up platform links
+            const platformLinks = document.querySelectorAll('.platform-link');
+            platformLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.getAttribute('data-platform');
+                    const url = getDownloadUrl(platform);
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = url;
+                    downloadLink.download = '';
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    setTimeout(function() {
+                        window.open(url, '_blank');
+                    }, 500);
+                });
+            });
         });
     </script>
 </body>
