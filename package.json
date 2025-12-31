@@ -50,15 +50,23 @@
     },
     "files": [
       "**/*",
-      "!node_modules/**/*",
-      "node_modules/@solana/**/*",
-      "node_modules/bs58/**/*",
-      "node_modules/crypto-js/**/*",
-      "node_modules/ethers/**/*",
+      "!**/node_modules/@types/**/*",
+      "!**/node_modules/.bin/**/*",
+      "!**/*.{md,markdown}",
+      "!**/*.map",
+      "!**/test/**/*",
+      "!**/tests/**/*",
+      "!**/__tests__/**/*",
+      "!**/spec/**/*",
+      "!**/docs/**/*",
+      "!**/examples/**/*",
       "extensions/**/*",
       "!dist/**/*",
       "!build/**/*",
-      "!.git/**/*"
+      "!.git/**/*",
+      "!omega-os-landing.html",
+      "!serve-landing.py",
+      "!create-release.md"
     ],
     "win": {
       "target": [
@@ -100,7 +108,8 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
+      "createStartMenuShortcut": true,
+      "include": "build/installer.nsh"
     },
     "publish": {
       "provider": "github",
