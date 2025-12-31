@@ -590,9 +590,9 @@
                 
                 // Try common electron-builder filename patterns
                 const urls = {
-                    'windows': baseUrl + 'Omega-OS-Windows-1.0.0.zip', // Portable zip file
-                    'macos': baseUrl + 'Omega OS-1.0.0.dmg',
-                    'linux': baseUrl + 'Omega OS-1.0.0.AppImage'
+                    'windows': baseUrl + 'Omega%20OS%20Setup%201.0.0.exe', // NSIS installer (URL encoded spaces)
+                    'macos': baseUrl + 'Omega%20OS-1.0.0.dmg',
+                    'linux': baseUrl + 'Omega%20OS-1.0.0.AppImage'
                 };
                 
                 // Fallback to releases page if platform unknown
