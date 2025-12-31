@@ -1,0 +1,92 @@
+{
+  "name": "omega-os",
+  "version": "1.0.0",
+  "description": "Omega OS - Isolated Desktop Environment",
+  "main": "main.js",
+  "homepage": "https://github.com/OmegaNetwork-source/Omega_OS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OmegaNetwork-source/Omega_OS.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --win --mac --linux"
+  },
+  "keywords": ["browser", "electron", "omega", "os", "isolated", "environment"],
+  "author": "OmegaNetwork",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "bs58": "^5.0.0",
+    "crypto-js": "^4.2.0"
+  },
+  "build": {
+    "appId": "com.omeganetwork.os",
+    "productName": "Omega OS",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "node_modules/@solana/**/*",
+      "node_modules/bs58/**/*",
+      "node_modules/crypto-js/**/*",
+      "!dist/**/*",
+      "!build/**/*",
+      "!.git/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "publisherName": "OmegaNetwork"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "build/icon.icns",
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "build/icon.png",
+      "category": "Utility"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "OmegaNetwork-source",
+      "repo": "Omega_OS"
+    }
+  }
+}
+
